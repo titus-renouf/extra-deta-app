@@ -12,6 +12,6 @@ def index():
         else:
             pass  # unknown
     elif request.method == 'GET':
-        return render_template('index.html', form=form)
+        return render_template('index.html', form='form')
 
     return render_template("index.html")
