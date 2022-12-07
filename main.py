@@ -27,5 +27,15 @@ def index():
 
     return prefix_google + render_template("hello.html")
 
+
+@app.route('/logger')
+def printMsg():
+    app.logger.warning('testing warning log')
+    app.logger.error('testing error log')
+    app.logger.info('testing info log')
+    return render_template('logger.html')
+    #deta logs in terminal to see back-end logs
+
+
 if __name__=="__main__":
     app.run(debug=True)
