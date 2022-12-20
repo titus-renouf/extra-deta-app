@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import requests
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -36,6 +37,21 @@ def printMsg():
 
     return render_template('textbox.html')
     #deta logs in terminal to see back-end logs
+
+
+@app.route('/reqGA')
+def reqGA():
+    req = requests.get("https://www.google.com/")
+    app.logger.info(req)
+    return req.cookies.get_dict()
+
+
+@app.route('/myreqGA')
+def myreqGA():
+    req = requests.get('https://analytics.google.com/analytics/web/#/a250985568p345087452')
+    app.logger.info(req)
+    return req.text
+
 
 if __name__=="__main__":
     app.run(debug=True)
